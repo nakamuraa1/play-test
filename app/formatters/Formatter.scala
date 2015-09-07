@@ -10,12 +10,12 @@ object Formatter {
   implicit val NameJsonFormatter: Format[Name] = (
     (__ \ "first").format[String](minLength[String](1)) and
       (__ \ "last").format[String]
-    )(Name.apply _, unlift(Name.unapply))
+    )(Name.apply, unlift(Name.unapply))
 
   implicit val PersonJsonFormatter: Format[Person] = (
 
     (__ \ "age").format[Int] and
       (__ \ "name").format[Name]
-    )(Person.apply _, unlift(Person.unapply))
+    )(Person.apply, unlift(Person.unapply))
 
 }
