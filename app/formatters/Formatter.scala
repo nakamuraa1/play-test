@@ -15,7 +15,9 @@ object Formatter {
   implicit val PersonJsonFormatter: Format[Person] = (
 
     (__ \ "age").format[Int] and
-      (__ \ "name").format[Name]
-    )(Person.apply, unlift(Person.unapply))
+      (__ \ "name").format[Name] and
+      (__ \ "bloodType").formatNullable[String] and
+      (__ \ "favoriteNum").format[Seq[Int]]
+    )(Person.apply _, unlift(Person.unapply))
 
 }
